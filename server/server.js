@@ -2,12 +2,14 @@ import express from "express";
 import cors from "cors";
 import { configDotenv } from "dotenv";
 import connectDB from "./config/connectDB.js";
+import cloudinaryConfig from "./config/cloudinary.js";
 
 configDotenv();
 
 const app = express();
 
 connectDB();
+cloudinaryConfig();
 
 app.use(cors());
 app.use(express.json());
