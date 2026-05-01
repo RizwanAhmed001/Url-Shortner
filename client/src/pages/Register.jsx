@@ -170,7 +170,7 @@ const Register = () => {
               className="w-full text-sm text-gray-400 file:bg-white file:text-black file:px-4 file:py-2 file:rounded-lg file:border-0"
             />
 
-            <button className="px-4 py-3 bg-white text-black rounded-lg font-semibold hover:bg-gray-200 transition">
+            <button className="px-4 py-2 bg-white text-black rounded-lg font-semibold hover:bg-gray-200 transition">
               Create Account
             </button>
           </form>
