@@ -7,10 +7,10 @@ import UrlContextProvider from "./context/UrlContextProvider.jsx";
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <UrlContextProvider>
-      <BrowserRouter>
+    <BrowserRouter>
+      <UrlContextProvider>
         <App />
-      </BrowserRouter>
-    </UrlContextProvider>
+      </UrlContextProvider>
+    </BrowserRouter>
   </StrictMode>,
 );
