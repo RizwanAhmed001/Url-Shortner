@@ -16,7 +16,7 @@ const Header = () => {
     <div className="bg-black text-white shadow-md px-6 py-4 flex items-center justify-between">
       
       {/* Logo / Title */}
-      <h1 className="text-2xl font-bold tracking-wide text-gray-100">
+      <h1 onClick={() => navigate("/")} className="text-2xl font-bold tracking-wide text-gray-100 cursor-pointer">
         Url-Shortner
       </h1>
 
