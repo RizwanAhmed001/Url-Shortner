@@ -4,7 +4,7 @@ import axios from "axios";
 import UrlContext from "../context/UrlContext";
 
 const Register = () => {
-  const { backendUrl, token, navigate, setToken } = useContext(UrlContext);
+  const { backendUrl, token, navigate, setToken, user, setUser } = useContext(UrlContext);
 
   const [login, setLogin] = useState(true);
 
@@ -57,7 +57,10 @@ const Register = () => {
         );
 
         localStorage.setItem("token", response.data.token);
+        localStorage.setItem("name", response.data.user.name)
+        localStorage.setItem("image", response.data.user.image)
         setToken(response.data.token);
+        setUser({name: localStorage.getItem("name"), image: localStorage.getItem("image")})
 
         navigate("/");
       } else {

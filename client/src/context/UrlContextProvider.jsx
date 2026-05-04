@@ -6,6 +6,11 @@ const UrlContextProvider = ({children}) => {
 
   const [token, setToken] = useState(localStorage.getItem("token") || "");
 
+  const [user, setUser] = useState({
+    name: localStorage.getItem("name") || "",
+    image: localStorage.getItem("image") || ""
+  })
+
   const backendUrl = "http://localhost:4000/api/user";
 
   const navigate = useNavigate();
@@ -14,7 +19,9 @@ const UrlContextProvider = ({children}) => {
     token, 
     setToken,
     backendUrl,
-    navigate
+    navigate,
+    user, 
+    setUser
   } 
 
   return (
