@@ -4,6 +4,7 @@ import { configDotenv } from "dotenv";
 import connectDB from "./config/connectDB.js";
 import cloudinaryConfig from "./config/cloudinary.js";
 import userRoute from "./routes/user.route.js";
+import urlRoute from "./routes/url.route.js";
 
 configDotenv();
 
@@ -16,6 +17,7 @@ app.use(cors());
 app.use(express.json());
 
 app.use("/api/user", userRoute);
+app.use("/api/url", urlRoute);
 
 app.get("/", (req, res) => {
   res.send("API WORKING!")
