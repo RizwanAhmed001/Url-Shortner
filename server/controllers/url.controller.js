@@ -1,4 +1,4 @@
-import UrlModel from "../models/Url.model";
+import UrlModel from "../models/Url.model.js";
 
 export const addUrl = async (req, res) => {
   try {

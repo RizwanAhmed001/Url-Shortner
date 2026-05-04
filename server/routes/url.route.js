@@ -1,5 +1,5 @@
 import express from "express";
-import { addUrl } from "../controllers/url.controller";
+import { addUrl } from "../controllers/url.controller.js";
 
 const urlRoute = express.Router();
 
