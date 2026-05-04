@@ -3,6 +3,7 @@ import Dashboard from "./pages/Dashboard";
 import Register from "./pages/Register";
 import { ToastContainer } from "react-toastify";
 import Header from "./components/Header";
+import Error from "./pages/Error";
 
 function App() {
   const location = useLocation();
@@ -25,6 +26,7 @@ function App() {
         <Routes>
           <Route element={<Dashboard />} path="/" />
           <Route element={<Register />} path="/register" />
+          <Route element={<Error />} path="*" />
         </Routes>
       </div>
     </div>
