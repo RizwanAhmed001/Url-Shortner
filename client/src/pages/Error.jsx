@@ -5,7 +5,7 @@ const Error = () => {
   const navigate = useNavigate();
 
   return (
-    <div className="bg-black text-white min-h-[60vh] flex flex-col items-center justify-center px-4">
+    <div className="bg-black text-white min-h-[59vh] flex flex-col items-center justify-center px-4">
       
       {/* Error Code */}
       <h1 className="text-7xl font-extrabold text-gray-200 mb-4">
