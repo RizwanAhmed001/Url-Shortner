@@ -3,7 +3,7 @@
 const Dashboard = () => {
   return (
     <div>
-      I Am Dashboard!
+      I Am Dashboard
     </div>
   )
 }
