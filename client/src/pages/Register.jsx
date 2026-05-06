@@ -72,7 +72,7 @@ const Register = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-black text-white">
+    <div className="h-[90vh] flex items-center justify-center bg-black text-white">
       <div className="bg-neutral-900 p-8 rounded-xl shadow-lg w-full max-w-md border border-neutral-800">
         <h1 className="text-2xl font-bold text-center mb-4">
           Hold up! Let's login first..
