@@ -11,7 +11,7 @@ const UrlContextProvider = ({children}) => {
     image: localStorage.getItem("image") || ""
   })
 
-  const backendUrl = "http://localhost:4000/api/user";
+  const backendUrl = "http://localhost:4000/api";
 
   const navigate = useNavigate();
 

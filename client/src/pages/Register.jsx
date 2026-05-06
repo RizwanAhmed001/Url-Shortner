@@ -4,7 +4,7 @@ import axios from "axios";
 import UrlContext from "../context/UrlContext";
 
 const Register = () => {
-  const { backendUrl, token, navigate, setToken, user, setUser } = useContext(UrlContext);
+  const { backendUrl, token, navigate, setToken, setUser } = useContext(UrlContext);
 
   const [login, setLogin] = useState(true);
 
@@ -37,7 +37,7 @@ const Register = () => {
       let response;
 
       if (login) {
-        response = await axios.post(backendUrl + "/login", {
+        response = await axios.post(backendUrl+ "/user" + "/login", {
           email: userData.email,
           password: userData.password,
         });
@@ -48,7 +48,7 @@ const Register = () => {
         formData.append("password", userData.password);
         formData.append("image", userData.image);
 
-        response = await axios.post(backendUrl + "/register", formData);
+        response = await axios.post(backendUrl + "/user" + "/register", formData);
       }
 
       if (response.data.success) {
