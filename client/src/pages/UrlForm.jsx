@@ -16,7 +16,7 @@ const UrlForm = () => {
     if (!token) {
       navigate("/register");
     }
-  }, [token, navigate]);
+  }, [token]);
 
   const [urlData, setUrlData] = useState({
     realUrl: "",

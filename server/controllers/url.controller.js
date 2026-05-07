@@ -10,8 +10,6 @@ export const addUrl = async (req, res) => {
 
     const { realUrl, shortUrl, customUrl } = req.body;
 
-
-    // ✅ Validation
     if (!realUrl || (!shortUrl && !customUrl)) {
       return res.status(400).json({
         success: false,
@@ -19,7 +17,6 @@ export const addUrl = async (req, res) => {
       });
     }
 
-    // ✅ Check duplicate shortUrl
     const existingShort = await UrlModel.findOne({ shortUrl });
     if (existingShort) {
       return res.status(409).json({
@@ -28,7 +25,6 @@ export const addUrl = async (req, res) => {
       });
     }
 
-    // ✅ Check duplicate customUrl (if provided)
     if (customUrl) {
       const existingCustom = await UrlModel.findOne({ customUrl });
       if (existingCustom) {
@@ -39,7 +35,6 @@ export const addUrl = async (req, res) => {
       }
     }
 
-    // ✅ Create URL
     const newUrl = new UrlModel({
       userId: user,
       realUrl,
@@ -53,6 +48,36 @@ export const addUrl = async (req, res) => {
       success: true,
       message: "New URL added successfully!",
       data: newUrl,
+    });
+
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
+
+import UrlModel from "../models/urlModel.js";
+
+export const allUserUrls = async (req, res) => {
+  try {
+    const userId = req.user;
+
+    if (!userId) {
+      return res.status(401).json({
+        success: false,
+        message: "Not Authorized!",
+      });
+    }
+
+    const userUrls = await UrlModel.find({ userId })
+      .sort({ createdAt: -1 });
+
+    return res.status(200).json({
+      success: true,
+      message: "All Url Of Particular User",
+      utls: userUrls,
     });
 
   } catch (error) {
