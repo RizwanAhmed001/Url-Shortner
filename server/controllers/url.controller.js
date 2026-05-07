@@ -2,7 +2,14 @@ import UrlModel from "../models/Url.model.js";
 
 export const addUrl = async (req, res) => {
   try {
+    const user = req.user;
+
+    if(!user){
+      return req.status(401).json({success: false, message: "Not Authorized!"})
+    }
+
     const { realUrl, shortUrl, customUrl } = req.body;
+
 
     // ✅ Validation
     if (!realUrl || (!shortUrl && !customUrl)) {
@@ -34,6 +41,7 @@ export const addUrl = async (req, res) => {
 
     // ✅ Create URL
     const newUrl = new UrlModel({
+      userId: user,
       realUrl,
       shortUrl,
       customUrl,
