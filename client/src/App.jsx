@@ -1,10 +1,10 @@
 import { Route, Routes, useLocation } from "react-router-dom";
-import Dashboard from "./pages/UrlForm";
 import Register from "./pages/Register";
 import { ToastContainer } from "react-toastify";
 import Header from "./components/Header";
 import Error from "./pages/Error";
 import UrlForm from "./pages/UrlForm";
+import Profile from "./pages/Profile";
 
 function App() {
   const location = useLocation();
@@ -27,6 +27,7 @@ function App() {
         <Routes>
           <Route element={<UrlForm />} path="/" />
           <Route element={<Register />} path="/register" />
+          <Route element={<Profile />} path="/profile" />
           <Route element={<Error />} path="*" />
         </Routes>
       </div>

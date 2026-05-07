@@ -27,15 +27,16 @@ const Header = () => {
             
             {/* User Image */}
             <img
+            onClick={() => navigate("/profile")}
               src={user.image}
               alt="user"
-              className="w-10 h-10 rounded-full border-2 border-gray-600 object-cover"
+              className="w-10 h-10 rounded-full border-2 border-gray-600 object-cover cursor-pointer"
             />
 
             {/* Logout Button */}
             <button
               onClick={handleClick}
-              className="bg-red-600 hover:bg-red-700 px-4 py-2 rounded-lg text-sm font-medium transition duration-300"
+              className="bg-red-600 hover:bg-red-700 px-4 py-2 rounded-lg text-sm font-medium transition duration-300 cursor-pointer"
             >
               Logout
             </button>
@@ -45,7 +46,7 @@ const Header = () => {
             {/* Login Button */}
             <button
               onClick={() => navigate("/register")}
-              className="bg-gray-800 hover:bg-gray-700 px-4 py-2 rounded-lg text-sm font-medium transition duration-300 border border-gray-600"
+              className="bg-gray-800 hover:bg-gray-700 px-4 py-2 rounded-lg text-sm font-medium transition duration-300 border border-gray-600 cursor-pointer"
             >
               Login
             </button>

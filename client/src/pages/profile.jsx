@@ -1,6 +1,6 @@
 
 
-const profile = () => {
+const Profile = () => {
   return (
     <div>
       User Url Page
@@ -8,4 +8,4 @@ const profile = () => {
   )
 }
 
-export default profile
+export default Profile

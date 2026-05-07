@@ -60,7 +60,7 @@ const Register = () => {
         localStorage.setItem("name", response.data.user.name)
         localStorage.setItem("image", response.data.user.image)
         setToken(response.data.token);
-        setUser({name: localStorage.getItem("name"), image: localStorage.getItem("image")})
+        setUser({ name: localStorage.getItem("name"), image: localStorage.getItem("image")})
 
         navigate("/");
       } else {
