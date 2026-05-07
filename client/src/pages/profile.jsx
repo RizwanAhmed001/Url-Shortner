@@ -11,18 +11,6 @@ const Profile = () => {
     }
   }, [token]);
 
-  // const getUserProfile = async () => {
-  //   try {
-  //     const response 
-  //   } catch (error) {
-  //     toast.error(error.message)
-  //   }
-  // }
-
-  // useEffect(() => {
-  //   getUserProfile();
-  // }, [])
-
   return <div>User Url Page</div>;
 };
 
