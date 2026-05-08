@@ -58,8 +58,6 @@ export const addUrl = async (req, res) => {
   }
 };
 
-import UrlModel from "../models/urlModel.js";
-
 export const allUserUrls = async (req, res) => {
   try {
     const userId = req.user;
@@ -77,7 +75,7 @@ export const allUserUrls = async (req, res) => {
     return res.status(200).json({
       success: true,
       message: "All Url Of Particular User",
-      utls: userUrls,
+      urls: userUrls,
     });
 
   } catch (error) {
