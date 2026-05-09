@@ -98,13 +98,22 @@ export const redirectUrl = async (req, res) => {
     });
 
     if (!url) {
-      return res.status(404).send("URL not found");
+      return res.status(404).json({
+        success: false,
+        message: "URL not found"
+      });
     }
 
-    // 🔥 REDIRECT
-    return res.redirect(url.realUrl);
+    // ✅ SEND DATA INSTEAD OF REDIRECT
+    return res.json({
+      success: true,
+      realUrl: url.realUrl
+    });
 
   } catch (error) {
-    return res.status(500).send("Server error");
+    return res.status(500).json({
+      success: false,
+      message: error.message
+    });
   }
 };
