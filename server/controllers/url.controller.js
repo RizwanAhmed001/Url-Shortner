@@ -5,7 +5,7 @@ export const addUrl = async (req, res) => {
     const user = req.user;
 
     if(!user){
-      return req.status(401).json({success: false, message: "Not Authorized!"})
+      return res.status(401).json({success: false, message: "Not Authorized!"})
     }
 
     const { realUrl, shortUrl, customUrl } = req.body;
@@ -83,5 +83,28 @@ export const allUserUrls = async (req, res) => {
       success: false,
       message: error.message,
     });
+  }
+};
+
+export const redirectUrl = async (req, res) => {
+  try {
+    const { shortCode } = req.params;
+
+    const url = await UrlModel.findOne({
+      $or: [
+        { shortUrl: shortCode },
+        { customUrl: shortCode }
+      ]
+    });
+
+    if (!url) {
+      return res.status(404).send("URL not found");
+    }
+
+    // 🔥 REDIRECT
+    return res.redirect(url.realUrl);
+
+  } catch (error) {
+    return res.status(500).send("Server error");
   }
 };
