@@ -8,14 +8,12 @@ const Profile = () => {
   const { token, navigate, backendUrl } = useContext(UrlContext);
   const [urlsData, setUrlsData] = useState([]);
 
-  // 🔐 Redirect if not logged in
   useEffect(() => {
     if (!token) {
       navigate("/register");
     }
   }, [token, navigate]);
 
-  // 📡 Fetch all URLs
   const allUrls = async () => {
     try {
       const response = await axios.get(`${backendUrl}/url/alluserurls`, {
@@ -52,6 +50,7 @@ const Profile = () => {
             {/* HEADER */}
             <thead className="bg-gray-900 text-gray-300">
               <tr>
+                <th className="p-3 text-left">Clicks</th>
                 <th className="p-3 text-left">Short URL</th>
                 <th className="p-3 text-left">Real URL</th>
                 <th className="p-3 text-left">Custom</th>
@@ -62,11 +61,6 @@ const Profile = () => {
             {/* BODY */}
             <tbody>
               {urlsData.map((url) => {
-                const code = url.customUrl || url.shortUrl;
-
-                // 🔥 THIS IS THE MAIN FIX
-                const shortLink = `${backendUrl}/url/${code}`;
-
                 return (
                   <tr
                     key={url._id}
@@ -75,17 +69,18 @@ const Profile = () => {
                     {/* SHORT URL */}
 
                     <td className="p-3">
-                      <Link
-                        to="#"
-                        onClick={() => {
-                          const code = url.customUrl || url.shortUrl;
-                          const shortLink = `${backendUrl}/url/${code}`;
-                          window.open(shortLink, "_blank"); // 🔥 open backend route
-                        }}
+                      <a
+                        href={url.realUrl}
+                        target="_blank"
+                        rel="noreferrer"
                         className="text-green-400 hover:underline break-all"
                       >
-                        {backendUrl}/url/{url.customUrl || url.shortUrl}
-                      </Link>
+                        {url.shortUrl}
+                      </a>
+                    </td>
+
+                    <td className="p-3">
+                      {url.clicks}
                     </td>
 
                     {/* REAL URL */}
@@ -102,18 +97,14 @@ const Profile = () => {
 
                     {/* CUSTOM URL */}
                     <td className="p-3 text-yellow-400 break-all">
-                      {url.customUrl ? url.customUrl : "—"}
+                      <a href={url.realUrl} target="_blank" rel="noreferrer">
+                        {url.customUrl}
+                      </a>
                     </td>
 
                     {/* COPY BUTTON */}
                     <td className="p-3">
-                      <button
-                        onClick={() => {
-                          navigator.clipboard.writeText(shortLink);
-                          toast.success("Copied!");
-                        }}
-                        className="bg-gray-800 px-3 py-1 rounded hover:bg-gray-700 text-sm"
-                      >
+                      <button className="bg-gray-800 px-3 py-1 rounded hover:bg-gray-700 text-sm">
                         Copy
                       </button>
                     </td>
