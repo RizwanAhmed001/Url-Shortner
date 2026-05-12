@@ -86,3 +86,40 @@ export const allUserUrls = async (req, res) => {
   }
 };
 
+export const urlClicks = async (req, res) => {
+  try {
+    const { urlId } = req.body;
+
+    if (!urlId) {
+      return res.status(400).json({
+        success: false,
+        message: "No URL ID provided!",
+      });
+    }
+
+    const updatedUrl = await UrlModel.findByIdAndUpdate(
+      urlId,
+      { $inc: { clicks: 1 } },
+      { new: true }
+    );
+
+    if (!updatedUrl) {
+      return res.status(404).json({
+        success: false,
+        message: "URL not found!",
+      });
+    }
+
+    return res.status(200).json({
+      success: true,
+      message: "URL click updated",
+      clicks: updatedUrl.clicks,
+    });
+
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
