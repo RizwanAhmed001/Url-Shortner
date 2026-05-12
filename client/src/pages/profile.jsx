@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 const Profile = () => {
   const { token, navigate, backendUrl } = useContext(UrlContext);
   const [urlsData, setUrlsData] = useState([]);
+  const [toggle, SetToggle] = useState(true);
 
   useEffect(() => {
     if (!token) {
@@ -32,11 +33,36 @@ const Profile = () => {
     }
   };
 
+  const handleClick = async (urlId) => {
+    try {
+      SetToggle(!toggle)
+      console.log(urlId)
+      const response = await axios.put(backendUrl + "/url" + "/urlclick", {urlId}, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+
+      if(response.data.success){
+        toast.success("Url Updated")
+      }else{
+        toast.warn(response.data.message)
+      }
+    } catch (error) {
+      toast.error(error.message)
+    }
+  }
+
+  const handleCopy = (realUrl) => {
+  navigator.clipboard.writeText(realUrl);
+  toast.success("Copied to clipboard!");
+};
+
   useEffect(() => {
     if (token) {
       allUrls();
     }
-  }, [token]);
+  }, [token, toggle]);
 
   return (
     <div className="min-h-screen bg-black text-white p-6">
@@ -68,7 +94,7 @@ const Profile = () => {
                   >
                     {/* SHORT URL */}
 
-                    <td className="p-3">
+                    <td className="p-3" onClick={() => handleClick(url._id)}>
                       <a
                         href={url.realUrl}
                         target="_blank"
@@ -84,7 +110,7 @@ const Profile = () => {
                     </td>
 
                     {/* REAL URL */}
-                    <td className="p-3">
+                    <td className="p-3" onClick={() => handleClick(url._id)}>
                       <a
                         href={url.realUrl}
                         target="_blank"
@@ -96,7 +122,7 @@ const Profile = () => {
                     </td>
 
                     {/* CUSTOM URL */}
-                    <td className="p-3 text-yellow-400 break-all">
+                    <td onClick={() => handleClick(url._id)} className="p-3 text-yellow-400 break-all">
                       <a href={url.realUrl} target="_blank" rel="noreferrer">
                         {url.customUrl}
                       </a>
@@ -104,7 +130,8 @@ const Profile = () => {
 
                     {/* COPY BUTTON */}
                     <td className="p-3">
-                      <button className="bg-gray-800 px-3 py-1 rounded hover:bg-gray-700 text-sm">
+                      <button className="bg-gray-800 px-3 py-1 rounded hover:bg-gray-700 text-sm"
+                       onClick={() => handleCopy(url.realUrl)}>
                         Copy
                       </button>
                     </td>

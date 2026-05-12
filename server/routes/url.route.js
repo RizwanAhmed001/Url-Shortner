@@ -6,6 +6,6 @@ const urlRoute = express.Router();
 
 urlRoute.post("/addurl",auth, addUrl);
 urlRoute.get("/alluserurls", auth, allUserUrls);
-url.Route.get("/urlclick", auth, urlClicks);
+urlRoute.put("/urlclick", auth, urlClicks);
 
 export default urlRoute;
