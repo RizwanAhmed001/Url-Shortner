@@ -6,6 +6,6 @@ const urlRoute = express.Router();
 
 urlRoute.post("/addurl",auth, addUrl);
 urlRoute.get("/alluserurls", auth, allUserUrls);
-urlRoute.get("/:shortCode",auth, redirectUrl);
+
 
 export default urlRoute;
