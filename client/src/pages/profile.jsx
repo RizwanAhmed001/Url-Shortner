@@ -2,7 +2,6 @@ import { useContext, useEffect, useState } from "react";
 import UrlContext from "../context/UrlContext";
 import { toast } from "react-toastify";
 import axios from "axios";
-import { Link } from "react-router-dom";
 
 const Profile = () => {
   const { token, navigate, backendUrl } = useContext(UrlContext);
